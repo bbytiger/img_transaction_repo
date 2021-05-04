@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -17,10 +17,12 @@ def create_user(request):
       last = request.POST['last']
       new_user = User.objects.create_user(username=username, password=password, email=email, first_name=first, last_name=last)
       login(request, user)
-      return redirect("dashboard")
+      return redirect("user_dashboard")
+
     except Exception as e:
-      messages.error(e)
-      return redirect("register")
+      messages.error(request, e)
+      return redirect("signup_user")
+
   return render(request, "html/register.html")
 
 def delete_user(request):
@@ -32,12 +34,15 @@ def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
+
     if user is not None:
       login(request, user)
-      return redirect("dashboard")
+      return redirect("user_dashboard")
     else:
-      messages.error("no match found for username and password")
-      return redirect("")
+      messages.error(request, "no match found for username and password")
+      print(request.get_host())
+      return redirect("login_user")
+
   return render(request, "html/login.html")
 
 def logout_user(request):

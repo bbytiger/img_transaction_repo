@@ -20,8 +20,9 @@ from imgdb.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_user),
-    path('signup', create_user),
-    path('delete', delete_user),
-    path('logout', logout_user),
-    path('dashboard', dashboard)
+    path('login/', login_user, name="login_user"),
+    path('signup/', create_user, name="signup_user"),
+    path('delete/', delete_user, name="user_deleted"),
+    path('logout/', logout_user, name="logout_user"),
+    path('dashboard/', dashboard, name="user_dashboard")
 ]

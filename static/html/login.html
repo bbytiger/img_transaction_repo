@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -10,14 +10,21 @@
   <body style="top:0; left:0; height: 100%; width: 100%; position: absolute;">
     <div class="back" style="height: 100%; width: 100%; display: flex;">
       <div class="container" style="margin:auto; text-align: center;">
-        {% csrf_token %}
         <h1>Image Repo</h1>
-        <form class="login" method="POST" action="/">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form class="login" method="POST" action="">
+          {% csrf_token %}
           <div class="row">
-            <input type="text" required="required" placeholder="username"/>
+            <input type="text" name="username" required="required" placeholder="username"/>
           </div>
           <div class="row">
-            <input type="password" required="required" placeholder="password"/>
+            <input type="password" name="password" required="required" placeholder="password"/>
           </div>
           <div class="row">
             <button type="submit">Sign In</button>
@@ -26,6 +33,6 @@
       </div>
     </div>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <!-- script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script -->
   </body>
 </html>
