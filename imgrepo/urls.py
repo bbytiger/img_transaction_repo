@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from imgdb.views import * 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', login_user),
+    path('signup', create_user),
+    path('delete', delete_user),
+    path('logout', logout_user),
+    path('dashboard', dashboard)
 ]
