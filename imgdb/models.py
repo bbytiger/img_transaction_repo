@@ -7,7 +7,7 @@ class ImageData(models.Model):
   owner = models.ForeignKey(User, related_name='user_images',on_delete=models.PROTECT, null=True, blank=True)
   public = models.BooleanField(null=True, default=False)
   forsale = models.BooleanField(null=True, default=False)
-  viewers = models.ManyToManyField(User)
+  viewers = models.ManyToManyField(User, related_name='user_accessible_images')
   path = models.FilePathField(max_length=512, null=True, blank=True)
   price = models.IntegerField(null=True, blank=True)
   discount_type = models.TextChoices('percent', 'cents')
