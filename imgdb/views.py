@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -31,10 +32,6 @@ def create_user(request):
 
   return render(request, "html/register.html")
 
-def delete_user(request):
-  logout(request)
-  return render(request, "html/delete_account.html")
-
 def login_user(request):
   if request.user.is_authenticated and request.user.is_active:
     return redirect('user_dashboard')
@@ -53,11 +50,22 @@ def login_user(request):
 
   return render(request, "html/login.html")
 
+def perform_logout(request):
+  if request.user.is_authenticated and request.user.is_active:
+    request.session['from_redirect'] = True
+    return HttpResponseRedirect(reverse("logout_user"))
+  return redirect("login_user")
+
 def logout_user(request):
-  print(request.session.keys())
-  print(request.session.items())
+  if request.user.is_authenticated and request.user.is_active:
+    if 'from_redirect' in request.session.keys():
+      logout(request)
+      return render(request, "html/logout.html")
+  return redirect("login_user")
+
+def delete_user(request):
   logout(request)
-  return render(request, "html/logout.html")
+  return render(request, "html/delete_account.html")
 
 # these are the user in-app specific actions
 

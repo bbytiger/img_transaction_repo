@@ -24,5 +24,6 @@ urlpatterns = [
     path('signup/', create_user, name="signup_user"),
     path('delete/', delete_user, name="user_deleted"),
     path('logout/', logout_user, name="logout_user"),
-    path('dashboard/', dashboard, name="user_dashboard")
+    path('dashboard/', dashboard, name="user_dashboard"),
+    path('perform-logout/', perform_logout, name="perform_logout")
 ]
