@@ -1,6 +1,8 @@
 .DS_Store
 .vscode/
 settings.py
+*.css
+*.css.map
 
 # begin standard python gitignore
 

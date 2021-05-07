@@ -40,7 +40,6 @@ def login_user(request):
       return redirect("user_dashboard")
     else:
       messages.error(request, "no match found for username and password")
-      print(request.get_host())
       return redirect("login_user")
 
   return render(request, "html/login.html")
