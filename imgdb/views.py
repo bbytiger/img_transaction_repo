@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 # these are the authentication related endpoints
 
 def create_user(request):
+  if request.user.is_authenticated and request.user.is_active:
+    return redirect('user_dashboard')
+
   if request.method == "POST":
     try:
       print(request)
@@ -33,6 +36,9 @@ def delete_user(request):
   return render(request, "html/delete_account.html")
 
 def login_user(request):
+  if request.user.is_authenticated and request.user.is_active:
+    return redirect('user_dashboard')
+
   if request.method == "POST":
     username = request.POST['username']
     password = request.POST['password']
@@ -48,7 +54,8 @@ def login_user(request):
   return render(request, "html/login.html")
 
 def logout_user(request):
-  print(request.user)
+  print(request.session.keys())
+  print(request.session.items())
   logout(request)
   return render(request, "html/logout.html")
 
@@ -56,7 +63,8 @@ def logout_user(request):
 
 @login_required(login_url="/login")
 def dashboard(request):
-  print(request.user)
+  print(request.session.keys())
+  print(request.session.items())
   return render(request, "html/dashboard.html")
 
 def issue_API_key():
