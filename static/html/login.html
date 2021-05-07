@@ -3,16 +3,13 @@
 <html>
   <head>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body style="top:0; left:0; height: 100%; width: 100%; position: absolute;">
     <div class="back" style="height: 100%; width: 100%; display: flex;">
       <div class="container" style="margin:auto; text-align: center;">
-        <h1>Image Repo</h1>
-        <h2>Login with your account or create an account <a href="/signup">here</a></h2>
+        <h1 class="login_header">Image Repo</h1>
+        <h2 class="login_subheader">Login with your account or create an account <a href="/signup" style="text-decoration: none;">here</a></h2>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -22,14 +19,14 @@
         {% endif %}
         <form class="login" method="POST" action="">
           {% csrf_token %}
-          <div class="row">
-            <input type="text" name="username" required="required" placeholder="username"/>
+          <div class="row pad">
+            <input type="text" class="form-control" name="username" required="required" placeholder="username"/>
           </div>
-          <div class="row">
-            <input type="password" name="password" required="required" placeholder="password"/>
+          <div class="row pad">
+            <input type="password" class="form-control" name="password" required="required" placeholder="password"/>
           </div>
-          <div class="row">
-            <button type="submit">Sign In</button>
+          <div class="row pad submit">
+            <button type="submit" class="btn btn-primary">Sign In</button>
           </div>
         </form>
       </div>

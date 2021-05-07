@@ -15,10 +15,13 @@ def create_user(request):
       email = request.POST['email']
       first = request.POST['first']
       last = request.POST['last']
-      new_user = User.objects.create_user(username=username, password=password, email=email, first_name=first, last_name=last)
-      login(request, user)
-      return redirect("user_dashboard")
-
+      if len(User.objects.filter(username=username)) == 0 and len(User.objects.filter(email=email)) == 0:
+        new_user = User.objects.create_user(username=username, password=password, email=email, first_name=first, last_name=last)
+        login(request, new_user)
+        return redirect("user_dashboard")
+      else:
+        messages.error(request, "user already exists")
+        return redirect("signup_user")
     except Exception as e:
       messages.error(request, e)
       return redirect("signup_user")
@@ -45,13 +48,15 @@ def login_user(request):
   return render(request, "html/login.html")
 
 def logout_user(request):
+  print(request.user)
   logout(request)
   return render(request, "html/logout.html")
 
 # these are the user in-app specific actions
 
-@login_required(login_url="/")
+@login_required(login_url="/login")
 def dashboard(request):
+  print(request.user)
   return render(request, "html/dashboard.html")
 
 def issue_API_key():
