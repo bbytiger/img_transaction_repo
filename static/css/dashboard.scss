@@ -2,16 +2,12 @@
   height: 100%;
 
   .top-bar {
+    display: flex;
     float: right;
     padding-bottom: 2vh;
     padding-top: 2vh;
     padding-right: 2vw;
     padding-left: 2vw;
-
-    .dropdown:hover {
-      opacity: 0.6;
-      cursor: pointer;
-    }
   }
 
   .sidebar {
