@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{% static 'js/pages.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -15,28 +16,28 @@
         <h1 class="sidebar-header">Image Repo</h1>
         <h2 class="sidebar-subheader">Personal</h2>
         <div>
-          <div class="dash-option">
+          <div class="dash-option" onclick="change_page(event)">
             <span class="flex"><i class="fa fa-database"></i></span>
-            <a href="#">My images</a>
+            <a href="javascript:;">My images</a>
           </div>
-          <div class="dash-option">
+          <div class="dash-option" onclick="change_page(event)">
             <span class="flex"><i class="fa fa-users"></i></span>
-            <a href="#">Shared with me</a>
+            <a href="javascript:;">Shared with me</a>
           </div>
         </div>
         <h2 class="sidebar-subheader">Market</h2>
         <div>
-          <div class="dash-option">
+          <div class="dash-option" onclick="change_page(event)">
             <span class="flex"><i class="fa fa-search"></i></span>
-            <a href="#">Browse</a>
+            <a href="javascript:;">Browse</a>
           </div>
-          <div class="dash-option">
+          <div class="dash-option" onclick="change_page(event)">
             <span class="flex"><i class="fa fa-inbox"></i></span>
-            <a href="#">Inventory</a> <!-- split this into bought, preparing, and currently selling-->
+            <a href="javascript:;">Inventory</a> <!-- split this into bought, preparing, and currently selling-->
           </div>
-          <div class="dash-option">
+          <div class="dash-option" onclick="change_page(event)">
             <span class="flex"><i class="fa fa-money"></i></span>
-            <a href="#">Payment History</a>
+            <a href="javascript:;">Payment History</a>
           </div>
         </div>
       </div>
@@ -52,7 +53,35 @@
         </div>
       </div>
       <div class="body">
-        
+        <template id="my-images-template">
+          <div id="child">
+            <div class="body-banner">
+              <h1 class="body-header">My Images</h1>
+              <div class="actions">
+                <div class="add-image ml-2">
+                  <button class="btn btn-primary btn-sm" type="button">
+                    Add Image
+                  </button>
+                </div>
+                <div class="delete-image ml-2">
+                  <button class="btn btn-danger btn-sm" type="button">
+                    Delete Image
+                  </button>
+                </div>
+              </div>
+            </div>
+            <hr/>
+            <i class="fa fa-upload"></i>
+          </div>
+        </template>
+        <template id="shared-with-me-template">
+          <div id="child">
+            <hr/>
+            <hr/>
+            <hr/>
+          </div>
+        </template>
+        <dashboard-page id="dashboard-page-switch" page-type="my-images"></dashboard-page>
       </div>
     </div>
   </body>

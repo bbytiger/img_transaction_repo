@@ -80,6 +80,7 @@ def dashboard(request):
     my_name = ""
   return render(request, "html/dashboard.html", {'my_name': my_name})
 
+@login_required(login_url="/login")
 def issue_API_key():
   pass
 

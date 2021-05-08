@@ -1,7 +1,14 @@
 .dash {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 100%;
 
   .top-bar {
+    right: 0;
+    top: 0;
+    position: absolute;
     display: flex;
     float: right;
     padding-bottom: 2vh;
@@ -73,5 +80,36 @@
       color: azure;
     }
 
+  }
+
+  .body {
+
+    hr {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    height: 90%;
+    margin-top: 10vh;
+    margin-left: 18vw;
+    padding-right: 2vw;
+
+    .body-banner {
+      margin-left: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .actions {
+        display: flex;
+      }
+    }
+
+    .body-header {
+      font-size: large;
+      margin: 0;
+    }
   }
 }
