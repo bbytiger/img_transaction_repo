@@ -74,7 +74,11 @@ def delete_user(request):
 def dashboard(request):
   print(request.session.keys())
   print(request.session.items())
-  return render(request, "html/dashboard.html")
+  try:
+    my_name = User.objects.filter(username=request.user)[0].first_name
+  except:
+    my_name = ""
+  return render(request, "html/dashboard.html", {'my_name': my_name})
 
 def issue_API_key():
   pass
