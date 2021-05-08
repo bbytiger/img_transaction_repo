@@ -33,6 +33,8 @@ class Pages extends HTMLElement {
     let templateLocation = document.getElementById(template)
     if (templateLocation) {
       this.innerHTML = templateLocation.innerHTML
+    } else {
+      this.innerHTML = ""
     }
   }
 
