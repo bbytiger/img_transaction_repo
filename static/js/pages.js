@@ -18,17 +18,17 @@ class Pages extends HTMLElement {
   }
 
   connectedCallback() {
-    this.render(false)
+    this.render()
   }
 
   attributeChangedCallback(name, oldv, newv) {
     if (oldv !== newv && oldv) {
       console.log("old:", oldv, " new:", newv)
-      this.render(true)
+      this.render()
     }
   }
 
-  render(change_needed) {
+  render() {
     let template = this.getAttribute('page-type') + "-template"
     let templateLocation = document.getElementById(template)
     if (templateLocation) {
