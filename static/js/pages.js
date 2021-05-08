@@ -32,14 +32,7 @@ class Pages extends HTMLElement {
     let template = this.getAttribute('page-type') + "-template"
     let templateLocation = document.getElementById(template)
     if (templateLocation) {
-      console.log(this)
-      let child = document.querySelector('#dashboard-page-switch').querySelector('#child')
-      console.log(child)
-      if (change_needed && child) {
-        this.removeChild(child);
-      }
-      console.log(templateLocation)
-      this.appendChild(templateLocation.content)
+      this.innerHTML = templateLocation.innerHTML
     }
   }
 
