@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from pprint import pprint # may be useful in the future if need to log requests for analytics
 
 # these are the authentication related endpoints
 
