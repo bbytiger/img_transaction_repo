@@ -4,18 +4,38 @@
   <head>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body style="top:0; left:0; height: 100%; width: 100%; position: absolute;">
     <div class="dash">
       <div class="sidebar">
         <h1 class="sidebar-header">Image Repo</h1>
         <h2 class="sidebar-subheader">Personal</h2>
-        <a href="#">My images</a>
-        <a href="#">Shared with me</a>
+        <div>
+          <div class="dash-option">
+            <span class="flex"><i class="fa fa-database"></i></span>
+            <a href="#">My images</a>
+          </div>
+          <div class="dash-option">
+            <span class="flex"><i class="fa fa-users"></i></span>
+            <a href="#">Shared with me</a>
+          </div>
+        </div>
         <h2 class="sidebar-subheader">Market</h2>
-        <a href="#">Browse</a>
-        <a href="#">Inventory</a> <!-- split this into bought/preparing and currently selling-->
-        <a href="#">Payment History</a>
+        <div>
+          <div class="dash-option">
+            <span class="flex"><i class="fa fa-search"></i></span>
+            <a href="#">Browse</a>
+          </div>
+          <div class="dash-option">
+            <span class="flex"><i class="fa fa-inbox"></i></span>
+            <a href="#">Inventory</a> <!-- split this into bought, preparing, and currently selling-->
+          </div>
+          <div class="dash-option">
+            <span class="flex"><i class="fa fa-money"></i></span>
+            <a href="#">Payment History</a>
+          </div>
+        </div>
       </div>
       <div class="body">
         

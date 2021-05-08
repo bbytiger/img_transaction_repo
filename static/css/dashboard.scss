@@ -13,7 +13,31 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
     text-align: center;
 
+    .dash-option {
+      padding-left: 1.5vw;
+      display: flex;
+      color: azure;
+
+      span {
+        width: 25px;
+      }
+
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+
+      &:hover {
+        transition: 0.3s;
+        color: #00ffff;
+      }
+    }
+
     a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 2vw;
+      text-align: left;
       display: block;
       color: azure;
       text-decoration: none;
@@ -22,7 +46,6 @@
     a:hover {
       transition: 0.3s;
       color: #00ffff;
-      opacity: 0.8;
     }
 
     .sidebar-header {
@@ -32,8 +55,12 @@
     }
 
     .sidebar-subheader {
+      padding: 8px;
+      border-radius: 5px;
+      background: #3333cc;
       margin: 10px;
       font-size: 2vmin;
+      font-weight: 10;
       color: azure;
     }
 
