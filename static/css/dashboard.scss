@@ -111,5 +111,45 @@
       font-size: large;
       margin: 0;
     }
+
+    .file-upload-content {
+      display: none;
+      text-align: center;   
+    }
+
+    .file-upload-wrapper {
+      padding: 10px;
+      position: relative;
+      color: rgba(27, 80, 129, 0.781);
+      background-color: #d6ecf3;
+      border: 2px rgba(15, 44, 139, 0.5) dashed;
+      border-radius: 5px;
+
+      &:hover {
+        transition: 0.2s;
+        transition-timing-function: ease-in-out;
+        background-color: lightsteelblue;
+      }
+
+      .drop-zone {
+        text-align: center;
+      }
+  
+      .manual-upload {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .upload-description {
+        margin-top: 0.2rem;
+      }
+    }
+    
   }
 }
