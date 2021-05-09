@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{% static 'js/pages.js' %}"></script>
     <script src="{% static 'js/fileupload.js' %}"></script>
+    <script src="{% static 'js/filefetch.js' %}"></script>
     <!-- import JQuery and Bootstrap Scripts -->
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -74,6 +75,16 @@
               </div>
             </div>
             <hr/>
+            <div class="img-card-container" onload="fetch_and_display_image()">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
             <div class="modal fade" id="addImageModal" tabindex="-1" role="dialog" aria-labelledby="addImageModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -95,10 +106,10 @@
                       <img width="400" height="400" class="file-upload-image" id="uploaded-img-src" src="#" alt="uploaded image" />
                       <div class="row input-img-name">
                         <div class="col file-name-label-justify">
-                          <label for="file-name-input" class="file-name-input-description">Please enter a name for your image</label>
+                          <label for="file-name-input" class="file-name-input-description">Please enter a name for your image (required)</label>
                         </div>
                         <div class="col">
-                          <input type="text" class="form-control file-name-input" name="file-name-input" required="required" placeholder="filename"/>
+                          <input type="text" id="file-name-input" class="form-control file-name-input" name="file-name-input" required="required" placeholder="filename"/>
                         </div>
                       </div>
                       <div class="privacy-select m-3">
@@ -109,10 +120,20 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger disabled" id="remove-button" onclick="remove_file()">Remove</button>
-                    <button type="button" class="btn btn-primary disabled" id="save-button" onclick="handle_upload()">Save</button>
+                    <button type="button" class="btn btn-primary disabled" onclick="handle_upload()" id="save-button">Save</button>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </template>
+        <template id="img-info-template">
+          <div class="img-card">
+            <img class="card-im-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </template>
