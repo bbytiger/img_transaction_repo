@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 from imgdb.views import * 
+from imgdb.api.viewsets import ImageDataViewSet, ImageTransactionViewSet
+
+router = SimpleRouter()
+router.register(r'data', ImageDataViewSet, basename='img-data')
+router.register(r'transaction', ImageTransactionViewSet, basename='img-transaction')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +33,5 @@ urlpatterns = [
     path('dashboard/', dashboard, name="user_dashboard"),
     path('perform-logout/', perform_logout, name="perform_logout")
 ]
+
+urlpatterns += router.urls
