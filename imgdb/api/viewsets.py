@@ -8,6 +8,8 @@ from imgdb.models import ImageData, ImageTransaction
 from rest_framework.authentication import TokenAuthentication
 from .serializers import ImageDataSerializer, ImageTransactionSerializer
 
+from datetime import datetime
+
 class UserSearchViewSet(viewsets.GenericViewSet):
   queryset = User.objects.all()
   @action(detail=False, methods=['post'])
@@ -28,7 +30,7 @@ class ImageDataViewSet(viewsets.GenericViewSet):
     
     self.queryset = ImageData.objects.all()
     serializer = ImageDataSerializer(self.queryset, many=True)
-    return Response(serializer.data)
+    return Response({"data": serializer.data})
 
   @authentication_classes((TokenAuthentication,))
   @action(detail=False, methods=['post'])

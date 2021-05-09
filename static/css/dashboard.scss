@@ -150,6 +150,39 @@
         margin-top: 0.2rem;
       }
     }
-    
+
+    .privacy-select {
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+
+      .privacy-description {
+        font-size: 14px;
+        text-align: left;
+        flex: 0.8;
+        margin-right: 8px;
+      }
+
+      .privacy-select-box {
+        flex: 0.2;
+      }
+
+    }
+
+    .input-img-name {
+      margin: 20px;
+      padding: 10px;
+    }
+
+    .file-name-input-description {
+      text-align: left;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .file-name-label-justify {
+      margin: auto;
+    }
   }
 }

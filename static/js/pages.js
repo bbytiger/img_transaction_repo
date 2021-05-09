@@ -1,5 +1,6 @@
 
 const change_page = function(event) {
+  console.log(event)
   let extract = String(event.target.innerHTML).toLowerCase()
   let splitString = extract.split(" ")
   let resString = splitString.join("-")

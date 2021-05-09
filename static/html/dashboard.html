@@ -28,19 +28,19 @@
             <a href="javascript:;">Shared with me</a>
           </div>
         </div>
-        <h2 class="sidebar-subheader">Market</h2>
+        <h2 class="sidebar-subheader">Market (incomplete)</h2>
         <div>
-          <div class="dash-option" onclick="change_page(event)">
+          <div class="dash-option" onclick="/*change_page(event)*/">
             <span class="flex"><i class="fa fa-search"></i></span>
-            <a href="javascript:;">Browse</a>
+            <a href="javascript:;">Browse (N/A)</a>
           </div>
-          <div class="dash-option" onclick="change_page(event)">
+          <div class="dash-option" onclick="/*change_page(event)*/">
             <span class="flex"><i class="fa fa-inbox"></i></span>
-            <a href="javascript:;">Inventory</a> <!-- split this into bought, preparing, and currently selling-->
+            <a href="javascript:;">Inventory (N/A)</a> <!-- split this into bought, preparing, and currently selling-->
           </div>
-          <div class="dash-option" onclick="change_page(event)">
+          <div class="dash-option" onclick="/*change_page(event)*/">
             <span class="flex"><i class="fa fa-money"></i></span>
-            <a href="javascript:;">Payment History</a>
+            <a href="javascript:;">Payment History (N/A)</a>
           </div>
         </div>
       </div>
@@ -92,12 +92,24 @@
                       </div>
                     </div>
                     <div class="file-upload-content">
-                      <img width="400" height="400" class="file-upload-image" src="#" alt="uploaded image" />
+                      <img width="400" height="400" class="file-upload-image" id="uploaded-img-src" src="#" alt="uploaded image" />
+                      <div class="row input-img-name">
+                        <div class="col file-name-label-justify">
+                          <label for="file-name-input" class="file-name-input-description">Please enter a name for your image</label>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control file-name-input" name="file-name-input" required="required" placeholder="filename"/>
+                        </div>
+                      </div>
+                      <div class="privacy-select m-3">
+                        <label for="privacy-select-box" class="privacy-description">Uploaded images default to private mode, please mark the following box if you would like to upload in public mode</label>
+                        <input type="checkbox" id="privacy-select-box" name="privacy-select-box" class="m-3">
+                      </div>
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger disabled" id="remove-button" onclick="remove_file()">Remove</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary disabled" id="save-button" onclick="handle_upload()">Save</button>
                   </div>
                 </div>
               </div>

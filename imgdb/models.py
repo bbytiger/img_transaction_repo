@@ -13,6 +13,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class ImageData(models.Model):
   id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  name = models.CharField(max_length=512, null=True, blank=True, default='')
   owner = models.ForeignKey(User, related_name='user_images',on_delete=models.PROTECT, null=True, blank=True)
   public = models.BooleanField(null=True, default=False)
   forsale = models.BooleanField(null=True, default=False)
