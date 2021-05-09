@@ -19,6 +19,11 @@ const handle_selected_file = function(file_pointer) {
   }
 }
 
+const reset_input = function() {
+  document.getElementById('manual-upload').value = '';
+  console.log(document.getElementById('manual-upload').value)
+}
+
 const remove_file = function() {
   $('.file-upload-content').hide();
   $('.file-upload-wrapper').show();

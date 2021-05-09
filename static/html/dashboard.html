@@ -85,7 +85,7 @@
                   </div>
                   <div class="modal-body">
                     <div class="file-upload-wrapper">
-                      <input class="manual-upload" type="file" id="manual-upload" name="manual-upload" accept="image/*" onchange="handle_selected_file(this)">
+                      <input class="manual-upload" type="file" id="manual-upload" name="manual-upload" accept="image/*" onchange="handle_selected_file(this)" onclick="reset_input()">
                       <div class="drop-zone" id="drop-zone" ondrop="handle_dropped_file(event)">
                         <i class="fa fa-upload fa-4x p-2"></i>
                         <p class="upload-description">Drag and drop your image</p>
