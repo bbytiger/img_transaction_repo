@@ -3,6 +3,7 @@
 settings.py
 *.css
 *.css.map
+userdata/
 
 # begin standard python gitignore
 
