@@ -78,9 +78,24 @@ class ImageDataViewSet(viewsets.GenericViewSet):
 
   @authentication_classes((TokenAuthentication,))
   @action(detail=False, methods=['post'])
+  def dl_image(self, request, *args, **kwargs):
+    if 'Authorization' not in request.headers:
+      return Response({"detail":"Authorization credentials were not provided."}, status=401)
+    else:
+      try:
+        # parse Authorization header
+        auth_token = str(request.headers['Authorization'].split(" ")[1])
+        user_search = Token.objects.get(key=auth_token).user
+        belong_to_user = user_search.user_images.all()
+        serializer = ImageDataSerializer(belong_to_user, many=True)
+        return Response({"data": serializer.data})
+      except:
+        return Response({"detail":"Authorization credentials were not provided."}, status=401)
+
+  @authentication_classes((TokenAuthentication,))
+  @action(detail=False, methods=['post'])
   def create_image(self, request, *args, **kwargs):
     if 'Authorization' not in request.headers:
-      # this will be a multipart-form-upload from in-app action
       user_list = User.objects.filter(username=request.user)
       name = str(request.data['img_name'])
       public = True if str(request.data['public']) == "true" else False
@@ -94,20 +109,35 @@ class ImageDataViewSet(viewsets.GenericViewSet):
       else:
         return Response({'message': "failed, please try again"}, status=400)
     else:
-      # this will be for handling JSON data
-      return Response({'not found': "not found"})
+      try:
+        # parse Authorization header
+        auth_token = str(request.headers['Authorization'].split(" ")[1])
+        user_search = Token.objects.get(key=auth_token).user
+        name = str(request.data['img_name'])
+        public = True if 'public' in request.data and str(request.data['public']) == "True" else False
+        img = request.data['img']
+        if img is not None and name is not None:
+          processed_img_bool = process_img(img, user_search, public, name)
+          if processed_img_bool:
+            return Response({'message': "successfully processed request"}, status=200)
+          else:
+            return Response({'message': "failed, please try again"}, status=400)
+        else:
+          return Response({'message': "failed, please try again"}, status=400)
+      except:
+        return Response({"detail":"Authorization credentials failed."}, status=401)
 
   @action(detail=False, methods=['post'])
   def batch_create(self, request, *args, **kwargs):
-    pass
+    return Response({'message': "endpoint not completed"})
 
   @action(detail=False, methods=['delete'])
   def delete_image(self, request, *args, **kwargs):
-    pass
+    return Response({'message': "endpoint not completed"})
 
   @action(detail=False, methods=['delete'])
   def batch_delete(self, request, *args, **kwargs):
-    pass
+    return Response({'message': "endpoint not completed"})
 
 class ImageTransactionViewSet(viewsets.GenericViewSet):
   pass
