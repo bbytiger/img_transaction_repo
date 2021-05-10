@@ -1,6 +1,5 @@
 .DS_Store
 .vscode/
-settings.py
 *.css
 *.css.map
 userdata/
