@@ -18,7 +18,7 @@ class ImageData(models.Model):
   public = models.BooleanField(null=True, default=False)
   forsale = models.BooleanField(null=True, default=False)
   viewers = models.ManyToManyField(User, related_name='user_accessible_images')
-  path = models.FilePathField(max_length=512, null=True, blank=True)
+  path = models.CharField(max_length=512, null=True, blank=True)
   price = models.IntegerField(null=True, blank=True)
   height = models.IntegerField(null=True, blank=True)
   width = models.IntegerField(null=True, blank=True)

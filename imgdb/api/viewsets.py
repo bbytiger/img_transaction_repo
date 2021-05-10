@@ -11,10 +11,11 @@ from rest_framework import viewsets, mixins
 from rest_framework.decorators import action, authentication_classes
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, JSONParser
+from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 from imgdb.models import ImageData, ImageTransaction
-from .serializers import ImageDataSerializer, ImageTransactionSerializer
+from imgdb.api.serializers import ImageDataSerializer, ImageTransactionSerializer
 
 def process_img(blob, user_model_obj, bool_public, img_name):
   user_folder = "user_"+str(user_model_obj.id)+'/'
@@ -62,13 +63,18 @@ class ImageDataViewSet(viewsets.GenericViewSet):
   @authentication_classes((TokenAuthentication,))
   @action(detail=False, methods=['get'])
   def user_images(self, request, *args, **kwargs):
-    print(request.headers)
     if 'Authorization' not in request.headers:
       return Response({"detail":"Authorization credentials were not provided."}, status=401)
-    
-    self.queryset = ImageData.objects.all()
-    serializer = ImageDataSerializer(self.queryset, many=True)
-    return Response({"data": serializer.data})
+    else:
+      try:
+        # parse Authorization header
+        auth_token = str(request.headers['Authorization'].split(" ")[1])
+        user_search = Token.objects.get(key=auth_token).user
+        belong_to_user = user_search.user_images.all()
+        serializer = ImageDataSerializer(belong_to_user, many=True)
+        return Response({"data": serializer.data})
+      except:
+        return Response({"detail":"Authorization credentials were not provided."}, status=401)
 
   @authentication_classes((TokenAuthentication,))
   @action(detail=False, methods=['post'])
