@@ -18,4 +18,4 @@
 
 - first create a virtual environment and run `pip install -r requirements.txt`
 - then run `python manage.py runserver`, visit `http://localhost:8000` to make an account and test the uploading on frontend
-- alternatively, can also run `python test.py` from the root directory to test the uploading and downloading endpoints
+- alternatively, can also run `python test.py` from the root directory to test the uploading and downloading endpoints, after starting the server with the `runserver` command above
