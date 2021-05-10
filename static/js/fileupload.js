@@ -92,9 +92,28 @@ const handle_upload = function() {
     })
     .then((res) => {
       // show a success message
-      console.log(res)
+      if (res.status === 200) {
+        remove_file(); reset_input();
+        document.getElementById('add-image-close').click()
+
+        Toastify({
+          text: "Successfully uploaded!",
+          duration: 3000
+        }).showToast();
+      
+      }
+      else {
+        throw 'failed, please try again.'
+      }
     })
     .catch((error) => {
+
+      Toastify({
+        text: 'failed, please try again.',
+        backgroundColor: "linear-gradient(to right, #FF5733, #B42000)",
+        duration: 3000
+      }).showToast();
+
       throw error
     })
     
@@ -106,7 +125,7 @@ const handle_upload = function() {
 
 const reset_input = function() {
   document.getElementById('manual-upload').value = '';
-  console.log(document.getElementById('manual-upload').value)
+  document.getElementById('file-name-input').value = '';
 }
 
 const remove_file = function() {
