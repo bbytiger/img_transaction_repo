@@ -19,11 +19,11 @@ from django.conf.urls import include, url
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 from imgdb.views import * 
-from imgdb.api.viewsets import ImageDataViewSet, ImageTransactionViewSet
+from imgdb.api.viewsets import ImageDataViewSet
 
 router = SimpleRouter()
 router.register(r'data', ImageDataViewSet, basename='img-data')
-router.register(r'transaction', ImageTransactionViewSet, basename='img-transaction')
+#router.register(r'transaction', ImageTransactionViewSet, basename='img-transaction')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
