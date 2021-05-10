@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.static import serve
 from pprint import pprint # may be useful in the future if need to log requests for analytics
 
 # these are the authentication related endpoints
@@ -84,3 +85,19 @@ def dashboard(request):
 def issue_API_key():
   pass
 
+@login_required(login_url="/login")
+def protected_serve(request, path, document_root=None, show_indexes=False):
+  if 'Authorization' not in request.headers:
+    # this is the user viewing endpoint
+    try:
+      url = int(request.path.split('/')[-2].split("user_")[-1])
+      k = User.objects.filter(username=request.user)
+      if k.count() == 1 and k[0].id == url:
+        return serve(request, path, document_root, show_indexes)
+      else:
+        return redirect("login_user")
+    except:
+      return redirect("login_user")
+  else:
+    # this is the API return endpoint
+    return Response({"detail":"Authorization credentials were not provided."}, status=401)
